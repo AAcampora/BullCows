@@ -36,7 +36,6 @@ string GetGuess()
 	cout << "Please enter your guess: \n ";
 	string Guess = "";
 	getline(cin, Guess);
-
 	return Guess;
 }
 
