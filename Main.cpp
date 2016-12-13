@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
-using namespace std; 
+#include "FBullCowGame.h"
 
 //functions prototype
 void PrintIntro(int word);
-string GetGuess();
-void RepeatGuess(string guess);
+std::string GetGuess();
+void RepeatGuess(std::string guess);
 void GuessLoop(int number);
 bool AskToPlayAgain();
 
@@ -27,42 +27,45 @@ int main() {
 }
 void PrintIntro(int word) {
 	//prints on screen the intrudutcion
-	cout << "Welcome to Bulls and Cows, a fun word game \n";
-	cout << "Can you guess the " << word;
-	cout << (" letter isogram i'm thinking of? \n");
-	cout << endl;
+	std::cout << "Welcome to Bulls and Cows, a fun word game \n";
+	std::cout << "Can you guess the " << word;
+	std::cout << (" letter isogram i'm thinking of? \n");
+	std::cout << std::endl;
 	return;
 }
 
-string GetGuess() {
+std::string GetGuess() {
 	//Asks Guess to the player
-	cout << "Please enter your guess: \n\n ";
-	string Guess = "";
-	getline(cin, Guess);
+	std::cout << "Please enter your guess: \n\n ";
+	std::string Guess = "";
+	
+	std::getline(std::cin, Guess);
 
 	return Guess;
 }
 
-void RepeatGuess(string guess) {
+void RepeatGuess(std::string guess) {
 	//Repeat guess to the player
-	cout << "Your guess was: " << guess << endl << endl;
+	std::cout << "Your guess was: " << guess << std::endl << std::endl;
 }
 
 void GuessLoop(int number) {
-	// loop for the number of turns asking for guesses
 
+	FBullCowGame BCGame; // an instance of  the game
+
+	// loop for the number of turns asking for guesses
 	for (int count = 1; count <=number; count++) {
 		RepeatGuess(GetGuess());
-		cout << endl;
+		std::cout << std::endl;
 	}
 }
 
 bool AskToPlayAgain() {
 
-	cout << "Do you want to play again? (y/n) ";
-	string Response = "";
-	getline(cin, Response);
+	std::cout << "Do you want to play again? (y/n) ";
+	std::string Response = "";
+	std::getline(std::cin, Response);
 
 	return (Response[0] == 'y') || (Response[0] == 'Y');
-	cout << endl;
+	std::cout << std::endl;
 }
