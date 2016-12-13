@@ -2,20 +2,28 @@
 #include <string>
 #include <stdio.h>
 using namespace std; 
+
 //functions prototype
 void PrintIntro(int word);
 string GetGuess();
 void RepeatGuess(string guess);
 void GuessLoop(int number);
+bool AskToPlayAgain();
 
 //the entry point of our operator 
 int main() {
 	constexpr int WORD_LENGTH = 9;
 	int NUMBER_OF_TURNS = 5;
-	PrintIntro(WORD_LENGTH);
-	GuessLoop(NUMBER_OF_TURNS);
+	bool bPlayAgain = false;
+	do {
+		PrintIntro(WORD_LENGTH);
+		GuessLoop(NUMBER_OF_TURNS);
+		//play again option
+		bPlayAgain = AskToPlayAgain();
+	}
+	while (bPlayAgain);
 	
-	return 0;
+	return 0; //exit the application
 }
 void PrintIntro(int word) {
 	//prints on screen the intrudutcion
@@ -47,4 +55,14 @@ void GuessLoop(int number) {
 		RepeatGuess(GetGuess());
 		cout << endl;
 	}
+}
+
+bool AskToPlayAgain() {
+
+	cout << "Do you want to play again? (y/n) ";
+	string Response = "";
+	getline(cin, Response);
+
+	return (Response[0] == 'y') || (Response[0] == 'Y');
+	cout << endl;
 }
