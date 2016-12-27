@@ -9,7 +9,7 @@ public:
 	int GetMaxTries();
 	int GetCurrentTry();
 	bool IsGameWon();
-	bool CheckGuessValidity(std::string);
+	bool CheckGuessValidity(std::string); //TODO make a more rich return value
 
 
 

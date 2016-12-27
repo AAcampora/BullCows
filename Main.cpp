@@ -7,7 +7,7 @@
 void PrintIntro(int word);
 std::string GetGuess();
 void RepeatGuess(std::string guess);
-void GuessLoop(int number);
+void PlayGame(int number);
 bool AskToPlayAgain();
 
 //the entry point of our operator 
@@ -17,7 +17,7 @@ int main() {
 	bool bPlayAgain = false;
 	do {
 		PrintIntro(WORD_LENGTH);
-		GuessLoop(NUMBER_OF_TURNS);
+		PlayGame(NUMBER_OF_TURNS);
 		//play again option
 		bPlayAgain = AskToPlayAgain();
 	}
@@ -25,6 +25,7 @@ int main() {
 	
 	return 0; //exit the application
 }
+
 void PrintIntro(int word) {
 	//prints on screen the intrudutcion
 	std::cout << "Welcome to Bulls and Cows, a fun word game \n";
@@ -36,9 +37,9 @@ void PrintIntro(int word) {
 
 std::string GetGuess() {
 	//Asks Guess to the player
-	std::cout << "Please enter your guess: \n\n ";
 	std::string Guess = "";
-	
+	std::cout << "Please enter your guess: \n\n ";
+
 	std::getline(std::cin, Guess);
 
 	return Guess;
@@ -49,7 +50,7 @@ void RepeatGuess(std::string guess) {
 	std::cout << "Your guess was: " << guess << std::endl << std::endl;
 }
 
-void GuessLoop(int number) {
+void PlayGame(int number) {
 
 	FBullCowGame BCGame; // an instance of  the game
 
@@ -62,10 +63,11 @@ void GuessLoop(int number) {
 
 bool AskToPlayAgain() {
 
-	std::cout << "Do you want to play again? (y/n) ";
 	std::string Response = "";
+	std::cout << "Do you want to play again? (y/n) ";
 	std::getline(std::cin, Response);
 
-	return (Response[0] == 'y') || (Response[0] == 'Y');
 	std::cout << std::endl;
+	return (tolower(Response[0]) == 'y');
+	
 }
