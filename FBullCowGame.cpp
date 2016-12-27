@@ -8,6 +8,11 @@ FBullCowGame::FBullCowGame() { Reset(); }
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 
+int32 FBullCowGame::GetHiddenWordLenght() const
+{
+	 return MyHiddenWord.length(); 
+}
+
 
 bool FBullCowGame::IsGameWon() const{
 	return false;
@@ -35,15 +40,14 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 			if (Guess[j] == MyHiddenWord[i]) 
 			{
 
+				// if they're in the same place 
 				if (i == j)
 				{
-					// if they're in the same place 
 					BullCowCount.Bulls++; //increment bulls
 				}				
 				else 
 				{
 					BullCowCount.Cows++; //increment cows
-
 				}
 				
 			}
@@ -57,7 +61,7 @@ void FBullCowGame::Reset() {
 	constexpr int32 MAX_TRIES = 8;
 	MyMaxTries = MAX_TRIES;
 
-	const FString HIDDEN_WORD = "ant";
+	const FString HIDDEN_WORD = "planet";
 	MyHiddenWord = HIDDEN_WORD;
 	MyCurrentTry = 1;
 	return;

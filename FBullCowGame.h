@@ -15,6 +15,7 @@ public:
 
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
+	int32 GetHiddenWordLenght() const;
 	bool IsGameWon() const;
 	
 	void Reset();

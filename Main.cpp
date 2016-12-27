@@ -18,7 +18,7 @@ FBullCowGame BCGame; // an instance of  the game
 
 //the entry point of our operator 
 int main() {
-	constexpr int32 WORD_LENGTH = 9;
+	int32 WORD_LENGTH = BCGame.GetHiddenWordLenght();
 	int32 NUMBER_OF_TURNS = 5;
 	bool bPlayAgain = false;
 	do {
