@@ -9,6 +9,9 @@ std::string GetGuess();
 void RepeatGuess(std::string guess);
 void PlayGame(int number);
 bool AskToPlayAgain();
+int MaxTries = 0;
+int CurrentTry = 0;
+FBullCowGame BCGame; // an instance of  the game
 
 //the entry point of our operator 
 int main() {
@@ -37,9 +40,10 @@ void PrintIntro(int word) {
 
 std::string GetGuess() {
 	//Asks Guess to the player
-	std::string Guess = "";
-	std::cout << "Please enter your guess: \n\n ";
 
+	std::string Guess = "";
+	CurrentTry = BCGame.GetCurrentTry();
+	std::cout << "Try: " << CurrentTry <<". Please enter your guess: \n\n ";
 	std::getline(std::cin, Guess);
 
 	return Guess;
@@ -51,11 +55,12 @@ void RepeatGuess(std::string guess) {
 }
 
 void PlayGame(int number) {
-
-	FBullCowGame BCGame; // an instance of  the game
-
+	
+	//BCGame.Reset();
+	MaxTries = BCGame.GetMaxTries();
+	std::cout << "try " << MaxTries << std::endl;
 	// loop for the number of turns asking for guesses
-	for (int count = 1; count <=number; count++) {
+	for (int count = 1; count <=MaxTries; count++) {
 		RepeatGuess(GetGuess());
 		std::cout << std::endl;
 	}
