@@ -54,9 +54,11 @@ FText GetGuess() {
 
 void RepeatGuess(FText guess) {
 	//Repeat guess to the player
+	FBullCowCount BullCowCount = BCGame.SubmitGuess(guess);
 	//print number of bulls and cows 
 
-	std::cout << "Your guess was: " << guess << std::endl << std::endl;
+	std::cout << "Bulls = " << BullCowCount.Bulls;
+	std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
 }
 
 void PlayGame(int32 number) {
