@@ -69,12 +69,9 @@ void RepeatGuess(FText guess) {
 	case EWordStatus::not_lowercase:
 		std::cout << "Please write in lowercase! \n";
 		break;
-	case EWordStatus::Ok:
-		//Repeat guess to the player
-		BullCowCount = BCGame.SubmitGuess(guess);
-		break;
 	default:
-		std::cout << "Generic error, please contact team support. \n";
+		//assume the guess is valid
+		BullCowCount = BCGame.SubmitGuess(guess);
 		break;
 	}
 	std::cout  <<  std::endl;
