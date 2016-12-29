@@ -53,8 +53,32 @@ FText GetGuess() {
 }
 
 void RepeatGuess(FText guess) {
-	//Repeat guess to the player
-	FBullCowCount BullCowCount = BCGame.SubmitGuess(guess);
+
+	//check guess validity
+	EWordStatus Status = BCGame.CheckGuessValidity(guess);
+	FBullCowCount BullCowCount;
+	switch (Status)
+	{
+	
+	case EWordStatus::not_Isogram:
+		std::cout << "Word not an Isogram!" << std::endl;
+		break;
+	case EWordStatus::wrong_lenght:
+		std::cout << "Please enter a " <<BCGame.GetHiddenWordLenght() << " letter word. \n";
+		break;
+	case EWordStatus::not_lowercase:
+		std::cout << "Please write in lowercase! \n";
+		break;
+	case EWordStatus::Ok:
+		//Repeat guess to the player
+		BullCowCount = BCGame.SubmitGuess(guess);
+		break;
+	default:
+		std::cout << "Generic error, please contact team support. \n";
+		break;
+	}
+	std::cout  <<  std::endl;
+	
 	//print number of bulls and cows 
 
 	std::cout << "Bulls = " << BullCowCount.Bulls;
@@ -68,7 +92,7 @@ void PlayGame(int32 number) {
 	// loop for the number of turns asking for guesses
 	//TODO change from FOR to WHILE loop
 	for (int32 count = 1; count <=MaxTries; count++) {
-		RepeatGuess(GetGuess()); //TODO make loop checking validity
+		RepeatGuess(GetGuess()); 
 		std::cout << std::endl;
 	}
 
