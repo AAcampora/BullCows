@@ -12,7 +12,6 @@ struct FBullCowCount {
 
 enum class EWordStatus {
 
-	Invalid_Status,
 	Ok,
 	not_Isogram,
 	wrong_lenght,
