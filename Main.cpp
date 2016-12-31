@@ -86,9 +86,11 @@ void PlayGame(int32 number) {
 
 	MaxTries = BCGame.GetMaxTries();
 	std::cout << "try " << MaxTries << std::endl;
+
 	// loop for the number of turns asking for guesses
-	//TODO change from FOR to WHILE loop
-	for (int32 count = 1; count <=MaxTries; count++) {
+
+	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)
+	{
 		RepeatGuess(GetGuess()); 
 		std::cout << std::endl;
 	}

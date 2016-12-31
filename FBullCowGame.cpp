@@ -7,7 +7,7 @@ FBullCowGame::FBullCowGame() { Reset(); }
 
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
-
+bool FBullCowGame::GetGameWon() const { return bGameIsWon; }
 int32 FBullCowGame::GetHiddenWordLenght() const
 {
 	 return MyHiddenWord.length(); 
@@ -15,11 +15,29 @@ int32 FBullCowGame::GetHiddenWordLenght() const
 
 
 bool FBullCowGame::IsGameWon() const{
-	return false;
+	//check if bulls are equal to hidden word length
+	FBullCowCount FBullCowCount;
+	if (GetHiddenWordLenght() == FBullCowCount.Bulls)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
+
 EWordStatus FBullCowGame::CheckGuessValidity(FString guess) const {
-	
+
+	//TODO change to switch statement
+	//switch (guess)
+	//{
+
+	//default:
+	//	break;
+	//}
+
 	if (false) //if the guess isn't an isogram
 	{
 		return EWordStatus::not_Isogram;
@@ -68,12 +86,18 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 				}
 				
 			}
-			/*else {
-					return;
-
-			}*/
 		}
 	}
+
+	if (BullCowCount.Bulls == HiddenWordLenght)
+	{
+		bGameIsWon = true;
+	}
+	else
+	{
+		bGameIsWon = false;
+	}
+
 	return BullCowCount;
 }
 
@@ -85,5 +109,6 @@ void FBullCowGame::Reset() {
 	const FString HIDDEN_WORD = "planet";
 	MyHiddenWord = HIDDEN_WORD;
 	MyCurrentTry = 1;
+	bGameIsWon = false;
 	return;
 }

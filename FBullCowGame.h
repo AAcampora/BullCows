@@ -27,6 +27,7 @@ public:
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWordLenght() const;
 	bool IsGameWon() const;
+	bool GetGameWon() const;
 	
 	void Reset();
 	EWordStatus CheckGuessValidity(FString guess) const; //TODO make a more rich return value
@@ -39,4 +40,5 @@ private:
 	int32 MyCurrentTry;
 	int32	MyMaxTries;
 	FString MyHiddenWord;
+	bool bGameIsWon;
 };
