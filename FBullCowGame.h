@@ -10,14 +10,15 @@ struct FBullCowCount {
 	int32 Cows = 0;
 };
 
-enum class EWordStatus {
-
-	Ok,
-	not_Isogram,
-	wrong_lenght,
-	not_lowercase
-
+enum class EGuessStatus
+{
+	Invalid_Status,
+	OK,
+	Not_Isogram,
+	Wrong_Length,
+	Not_Lowercase
 };
+
 
 class FBullCowGame {
 public:
@@ -27,18 +28,15 @@ public:
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWordLenght() const;
 	bool IsGameWon() const;
-	bool GetGameWon() const;
+	EGuessStatus CheckGuessValidity(FString guess) const;
 	
 	void Reset();
-	EWordStatus CheckGuessValidity(FString guess) const; //TODO make a more rich return value
-	// counts bulls & cows, and increases try # assuming valid guess
-
-	FBullCowCount SubmitGuess(FString);
+	FBullCowCount SubmitValidGuess(FString);
 
 // ^^ Please try to ignore this and focus on the interface above ^^
 private:
 	int32 MyCurrentTry;
-	int32	MyMaxTries;
+	int32 MyMaxTries;
 	FString MyHiddenWord;
 	bool bGameIsWon;
 };
