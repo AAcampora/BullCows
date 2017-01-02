@@ -1,4 +1,6 @@
 #include "FBullCowGame.h"
+#include <map>
+#define TMap std::map
 
 using FString = std::string;
 using int32 = int;
@@ -8,12 +10,12 @@ FBullCowGame::FBullCowGame() { Reset(); } // default constructor
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLenght() const{ return MyHiddenWord.length();}
 bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
-
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
+
 
 void FBullCowGame::Reset() {
 
-	constexpr int32 MAX_TRIES = 8;
+	constexpr int32 MAX_TRIES = 3;
 	MyMaxTries = MAX_TRIES;
 
 	const FString HIDDEN_WORD = "planet";
@@ -26,9 +28,9 @@ void FBullCowGame::Reset() {
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString guess) const {
 
-	if (false) //if the guess isn't an isogram
+	if (!IsIsogram()) //if the guess isn't an isogram
 	{
-		return EGuessStatus::Not_Isogram;
+			return EGuessStatus::Not_Isogram;
 	}
 	else if (false) //if the guess isn't all lowercase
 	{
@@ -87,5 +89,10 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 	}
 
 	return BullCowCount;
+}
+
+bool FBullCowGame::IsIsogram(FString guess) const
+{
+	return true;
 }
 

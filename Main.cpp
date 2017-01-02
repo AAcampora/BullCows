@@ -12,10 +12,11 @@ int32 CurrentTry = 0;
 
 //functions prototype
 void PrintIntro();
-FText GetGuess();
 FText GetValidGuess();
 void PlayGame();
 bool AskToPlayAgain();
+void PrintGameSummary();
+
 
 // an instance of  the game
 FBullCowGame BCGame; 
@@ -60,6 +61,9 @@ void PlayGame()
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
 	}
+	//print summary
+	PrintGameSummary();
+	return;
 }
 
 // loop continually until the user gives a valid guess
@@ -106,3 +110,15 @@ bool AskToPlayAgain() {
 
 }
 
+void PrintGameSummary() {
+
+	//if game goes out of max tries
+	if (!BCGame.IsGameWon())
+	{
+		std::cout << "Better luck next time... \n\n"; //game is lost 
+	}
+	else
+	{
+		std::cout << "Well done, you won!!! \n\n"; // game is won
+	}
+}
