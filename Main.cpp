@@ -38,9 +38,16 @@ int main() {
 
 void PrintIntro() {
 	//prints on screen the intrudutcion
-	std::cout << "Welcome to Bulls and Cows, a fun word game \n";
+	std::cout << "\n\nWelcome to Bulls and Cows, a fun word game \n";
 	std::cout << "Can you guess the " << WORD_LENGTH;
 	std::cout << (" letter isogram i'm thinking of? \n");
+	std::cout << std::endl;
+	std::cout << "          }   {         ___ " << std::endl;
+	std::cout << "          (o o)        (o o) " << std::endl;
+	std::cout << "   /-------\\ /          \\ /-------\\ " << std::endl;
+	std::cout << "  / | BULL |O            O| COW  | \\ " << std::endl;
+	std::cout << " *  |-,--- |              |------|  * " << std::endl;
+	std::cout << "    ^      ^              ^      ^ " << std::endl;
 	std::cout << std::endl;
 	return;
 }
