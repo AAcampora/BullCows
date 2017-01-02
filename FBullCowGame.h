@@ -1,10 +1,17 @@
+/*
+The game logic (no view code or director user interatcion)
+The game is a simple guess the word game based on Mastermind
+*/
 #pragma once
+
 #include <string>
 
+//To make syntax Unreal friendly
 using FString = std::string; 
 using int32 = int;
 
-struct FBullCowCount {
+struct FBullCowCount
+{
 
 	int32 Bulls = 0;
 	int32 Cows = 0;

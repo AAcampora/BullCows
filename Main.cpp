@@ -1,8 +1,15 @@
+/* This is console executable, that makes use of the BullCow class.
+This acts as the view in MVC pattern, and is responsible for all
+user interatcion. For game logic see the FBullCow class.
+*/
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <stdio.h>
 #include "FBullCowGame.h"
 
+//To make syntax Unreal friendly
 using FText = std::string;
 using int32 = int;
 
@@ -10,7 +17,7 @@ using int32 = int;
 int32 MaxTries = 0;
 int32 CurrentTry = 0;
 
-//functions prototype
+//functions prototype as outside a class
 void PrintIntro();
 FText GetValidGuess();
 void PlayGame();
@@ -18,12 +25,15 @@ bool AskToPlayAgain();
 void PrintGameSummary();
 
 
-// an instance of  the game
-FBullCowGame BCGame; 
+
+FBullCowGame BCGame;	// an instance of  the game
 int32 WORD_LENGTH = BCGame.GetHiddenWordLenght();
 
 //the entry point of our operator 
 int main() {
+
+	//TODO initialise game or help
+		//TODO ask the lenght of the hidden word 
 	bool bPlayAgain = false;
 	do {
 		PrintIntro();
@@ -37,10 +47,11 @@ int main() {
 }
 
 void PrintIntro() {
-	//prints on screen the intrudutcion
 	std::cout << "\n\nWelcome to Bulls and Cows, a fun word game \n";
 	std::cout << "Can you guess the " << WORD_LENGTH;
 	std::cout << (" letter isogram i'm thinking of? \n");
+	//TODO tell player about /help 
+
 	std::cout << std::endl;
 	std::cout << "          }   {         ___ " << std::endl;
 	std::cout << "          (o o)        (o o) " << std::endl;
@@ -52,7 +63,7 @@ void PrintIntro() {
 	return;
 }
 
-void PlayGame()
+void PlayGame() // plays a single game to compleation
 {
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
@@ -68,12 +79,10 @@ void PlayGame()
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
 	}
-	//print summary
 	PrintGameSummary();
 	return;
 }
 
-// loop continually until the user gives a valid guess
 FText GetValidGuess()
 {
 	FText Guess = "";
@@ -104,7 +113,6 @@ FText GetValidGuess()
 	} while (Status != EGuessStatus::OK); // keep looping until we get no errors
 	return Guess;
 }
-
 
 bool AskToPlayAgain() {
 
