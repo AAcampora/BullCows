@@ -23,8 +23,10 @@ FText GetValidGuess();
 void PlayGame();
 bool AskToPlayAgain();
 void PrintGameSummary();
-
-
+bool InitialiseGame();
+void PrintHelp();
+void IsHelpNeeded();
+bool CheckDifficulty();
 
 FBullCowGame BCGame;	// an instance of  the game
 int32 WORD_LENGTH = BCGame.GetHiddenWordLenght();
@@ -32,11 +34,13 @@ int32 WORD_LENGTH = BCGame.GetHiddenWordLenght();
 //the entry point of our operator 
 int main() {
 
-	//TODO initialise game or help
-		//TODO ask the lenght of the hidden word 
 	bool bPlayAgain = false;
+	
+
 	do {
 		PrintIntro();
+		IsHelpNeeded();
+
 		PlayGame();
 		//play again option
 		bPlayAgain = AskToPlayAgain();
@@ -70,14 +74,19 @@ void PlayGame() // plays a single game to compleation
 
 	// loop asking for guesses while the game
 	// is NOT won and there are still tries remaining
-	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
-		FText Guess = GetValidGuess();
+	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)
+	{
+		// //get difficulty input from player
+		//if (CheckDifficulty())
+		//{
+			FText Guess = GetValidGuess();
+		//	// submit valid guess to the game, and receive counts
+			FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
 
-		// submit valid guess to the game, and receive counts
-		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
+			std::cout << "Bulls = " << BullCowCount.Bulls;
+			std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
 
-		std::cout << "Bulls = " << BullCowCount.Bulls;
-		std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
+		/*}	*/	
 	}
 	PrintGameSummary();
 	return;
@@ -136,4 +145,61 @@ void PrintGameSummary() {
 	{
 		std::cout << "Well done, you won!!! \n\n"; // game is won
 	}
+}
+
+bool InitialiseGame()
+{
+	std::cout << "if  you want to begin, please enter: start "<< std::endl;
+	std::cout << "if you need help, please enter: help" << std::endl;
+	std::cout << std::endl;
+	
+	FText Choice = "";
+	std::getline(std::cin, Choice);//get the input from player 
+	
+	if (tolower(Choice[0]) == 's')
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void PrintHelp()
+{
+
+		std::cout << "-Help\n-A Isogram is a word or phrase without a repeating letter.\n";
+		std::cout << "-An example can be the word ISOGRAM.\n";
+		std::cout << "-Your score is Bulls and Cows:\nBulls are the right letters in the right position\n";
+		std::cout << "-Cows are the right letters in the wrong position\n";
+		std::cout << "-Use the score to help you guessing the right word.\n\n";
+		return;
+}
+
+void IsHelpNeeded()
+{
+	if (!InitialiseGame())
+	{
+		PrintHelp();
+	}
+	else
+	{
+		return;
+	}
+
+}
+
+bool CheckDifficulty()
+{
+	std::cout << "please enter difficulty: 1 = easy, 2 = medium, 3 = hard.\n " << std::endl;
+	FText difficulty = "";
+	std::getline(std::cin, difficulty);
+	
+	//switch (difficulty) //TODO set difficulty
+	//{
+	//default:
+	//	break;
+	//}
+	return true;
 }
