@@ -203,3 +203,5 @@ bool CheckDifficulty()
 	//}
 	return true;
 }
+
+// hi this is test
